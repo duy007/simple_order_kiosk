@@ -1,6 +1,5 @@
 #!/bin/bash
-cd ../database
-sqlite3 ./orderKiosk.db "CREATE TABLE Customer (customer_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, first_name TEXT NOT NULL, last_name TEXT NOT NULL, middle_initial TEXT DEFAULT NULL, phone_num INTEGER NOT NULL, date_join DATE DEFAULT CURRENT_TIMESTAMP NOT NULL);
+sqlite3 ./database/orderKiosk.db "CREATE TABLE Customer (customer_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, first_name TEXT NOT NULL, last_name TEXT NOT NULL, middle_initial TEXT DEFAULT NULL, phone_num INTEGER NOT NULL, date_join DATE DEFAULT CURRENT_TIMESTAMP NOT NULL);
 
 CREATE TABLE Product (product_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, product_name TEXT NOT NULL UNIQUE, price NUMERIC NOT NULL);
 

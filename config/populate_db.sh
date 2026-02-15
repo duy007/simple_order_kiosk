@@ -1,6 +1,5 @@
 #!/bin/bash
-cd ../database
-sqlite3 ./orderKiosk.db "INSERT INTO CUSTOMER(first_name, last_name, phone_num) VALUES (\"Alex\", \"McFundy\", 1112223333), (\"Judge\", \"Judy\", 4445556666), (\"Bruce\", \"Wayne\", 7778889999);
+sqlite3 ./database/orderKiosk.db "INSERT INTO CUSTOMER(first_name, last_name, phone_num) VALUES (\"Alex\", \"McFundy\", 1112223333), (\"Judge\", \"Judy\", 4445556666), (\"Bruce\", \"Wayne\", 7778889999);
 
 INSERT INTO PRODUCT(product_name, price) VALUES (\"Oolong Milk Tea\", 5.00), (\"Taro Milk Tea\", 5.00), (\"Mango Jasmine Fruit Tea\", 4.50);
 
