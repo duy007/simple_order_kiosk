@@ -1,8 +1,9 @@
 import { strict as assert } from 'node:assert';
 export const requiredParameters = (parameters) => {
-    parameters.map((p) => {
-        assert.notDeepStrictEqual(p, undefined, `${p} should not be undefined`);
-    });
+    for (const pName in parameters) {
+        console.log(pName);
+        assert.notDeepStrictEqual(parameters[pName], undefined, `${pName} should not be undefined`);
+    }
 };
 
 export const isExpectedClass = (obj, expected_Class) => {
@@ -25,17 +26,22 @@ const isExpectedTypeHelper = (value, expected_type) => {
 export const isExpectedType = (value, expected_type) => {
     switch (expected_type) {
         case TYPES.INTEGER:
-            isExpectedTypeHelper(p, "number");
-            assert.deepStrictEqual(Number.isInteger(p), true, `Mistmatched types. The type of ${value} is not type ${TYPES.INTEGER}`)
+            isExpectedTypeHelper(value, "number");
+            assert.deepStrictEqual(Number.isInteger(value), true, `Mistmatched types. The type of ${value} is not type ${TYPES.INTEGER} from expected type ${expected_type}`)
+            break;
         case TYPES.NUMERIC:
-            isExpectedTypeHelper(p, "number");
-            assert.deepStrictEqual(Number.isInteger(p), false, `Mistmatched types. The type of ${value} is not type ${TYPES.NUMERIC}`)
+            isExpectedTypeHelper(value, "number");
+            assert.deepStrictEqual(Number.isInteger(value), false, `Mistmatched types. The type of ${value} is not type ${TYPES.NUMERIC} from expected type ${expected_type}`)
+            break;
         case TYPES.TEXT:
             isExpectedTypeHelper(value, "string")
+            break;
         case TYPES.DATE:
-            isExpectedClass(p, Date);
+            isExpectedClass(value, Date);
+            break;
         case TYPES.BOOLEAN:
             isExpectedTypeHelper(value, "boolean");
+            break;
     }
 
 }

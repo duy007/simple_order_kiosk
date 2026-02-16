@@ -8,8 +8,8 @@ class Customer {
     #phoneNum;
     #dateJoin;
 
-    constructor(customerId, firstName, lastName, middleInitial, phoneNum) {
-        requiredParameters([customerId, firstName, lastName, phoneNum]);
+    constructor(customerId = -1, firstName, lastName, middleInitial, phoneNum, dateJoin = new Date()) {
+        requiredParameters([{ "customerId": customerId }, { "firstName": firstName }, { "lastName": lastName }, { "phoneNum": phoneNum }]);
         checkTypeParameters([customerId, firstName, lastName, phoneNum],
             [TYPES.INTEGER, TYPES.TEXT, TYPES.TEXT, TYPES.INTEGER]
         );
@@ -18,19 +18,7 @@ class Customer {
         this.#lastName = lastName;
         this.#middleInitial = middleInitial;
         this.#phoneNum = phoneNum;
-        this.#dateJoin = new Date();
-    };
-
-    constructor(firstName, lastName, middleInitial, phoneNum) {
-        requiredParameters([firstName, lastName, phoneNum]);
-        checkTypeParameters([firstName, lastName, phoneNum],
-            [TYPES.TEXT, TYPES.TEXT, TYPES.INTEGER]
-        );
-        this.#firstName = firstName;
-        this.#lastName = lastName;
-        this.#middleInitial = middleInitial;
-        this.#phoneNum = phoneNum;
-        this.#dateJoin = new Date();
+        this.#dateJoin = dateJoin;
     };
 
     getId() {
