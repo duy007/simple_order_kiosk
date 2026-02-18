@@ -1,5 +1,5 @@
 import { requiredParameters, isExpectedType, TYPES, checkTypeParameters } from "../utils/requiredParameterHelper";
-class Customer {
+export class Customer {
 
     #customerId;
     #firstName;
@@ -8,10 +8,10 @@ class Customer {
     #phoneNum;
     #dateJoin;
 
-    constructor(customerId = -1, firstName, lastName, middleInitial, phoneNum, dateJoin = new Date()) {
+    constructor(customerId = -1, firstName, lastName, middleInitial = "", phoneNum, dateJoin = new Date()) {
         requiredParameters([{ "customerId": customerId }, { "firstName": firstName }, { "lastName": lastName }, { "phoneNum": phoneNum }]);
-        checkTypeParameters([customerId, firstName, lastName, phoneNum],
-            [TYPES.INTEGER, TYPES.TEXT, TYPES.TEXT, TYPES.INTEGER]
+        checkTypeParameters([customerId, firstName, lastName, middleInitial, phoneNum, dateJoin],
+            [TYPES.INTEGER, TYPES.TEXT, TYPES.TEXT, TYPES.TEXT, TYPES.INTEGER, TYPES.DATE]
         );
         this.#customerId = customerId;
         this.#firstName = firstName;
@@ -46,42 +46,39 @@ class Customer {
     };
 
     getFullName() {
-        return `${this.#firstName + " " + `${getMiddleInitial() !== undefined ? getMiddleInitial() + " " : ""}` + this.#lastName}`;
+        return `${this.#firstName + " " + this.#middleInitial + `${this.#middleInitial.length > 1 ? " " : ""}` + this.#lastName}`;
     };
 
-    setFullName(firstName, lastName, middleInitial) {
-        requiredParameters([firstName, lastName]);
-        checkTypeParameters([firstName, lastName],
-            [TYPES.TEXT, TYPES.TEXT]
+    setFullName(firstName, lastName, middleInitial = "") {
+        requiredParameters([{ "firstName": firstName }, { "lastName": lastName }]);
+        checkTypeParameters([firstName, lastName, middleInitial],
+            [TYPES.TEXT, TYPES.TEXT, TYPES.TEXT]
         );
         this.#firstName = firstName;
-        if (middleInitial !== undefined) {
-            isExpectedType(middleInitial, TYPES.TEXT);
-            this.#middleInitial = middleInitial;
-        }
+        this.#middleInitial = middleInitial;
         this.#lastName = lastName;
     };
 
     setFirsName(firstName) {
-        requiredParameters([firstName]);
+        requiredParameters([{ "firstName": firstName }]);
         isExpectedType(firstName, TYPES.TEXT);
         this.#firstName = firstName;
     };
 
     setLastName(lastName) {
-        requiredParameters([lastName]);
+        requiredParameters([{ "lastName": lastName }]);
         isExpectedType(lastName, TYPES.TEXT);
         this.#lastName = lastName;
     };
 
     setPhoneNum(phoneNum) {
-        requiredParameters([phoneNum]);
+        requiredParameters([{ "phoneNum": phoneNum }]);
         isExpectedType(phoneNum, TYPES.INTEGER);
         this.#phoneNum = phoneNum;
     };
 
     setDateJoin(dateJoin) {
-        requiredParameters(dateJoin);
+        requiredParameters([{ "dateJoin": dateJoin }]);
         isExpectedType(dateJoin, TYPES.DATE);
         this.#dateJoin = dateJoin;
     };

@@ -12,7 +12,6 @@ export const isExpectedClass = (obj, expected_Class) => {
 
 export const TYPES = Object.freeze({
     INTEGER: "integer",
-    NUMERIC: "numeric",
     TEXT: "text",
     DATE: "date",
     BOOLEAN: "boolean"
@@ -29,10 +28,6 @@ export const isExpectedType = (value, expected_type) => {
             isExpectedTypeHelper(value, "number");
             assert.deepStrictEqual(Number.isInteger(value), true, `Mistmatched types. The type of ${value} is not type ${TYPES.INTEGER} from expected type ${expected_type}`)
             break;
-        case TYPES.NUMERIC:
-            isExpectedTypeHelper(value, "number");
-            assert.deepStrictEqual(Number.isInteger(value), false, `Mistmatched types. The type of ${value} is not type ${TYPES.NUMERIC} from expected type ${expected_type}`)
-            break;
         case TYPES.TEXT:
             isExpectedTypeHelper(value, "string")
             break;
@@ -46,13 +41,7 @@ export const isExpectedType = (value, expected_type) => {
 
 }
 
-export const checkTypeParameters = (parameters, expected_types) => {
-    assert.deepStrictEqual(parameters.length, expected_types.length, "length of expected types and parameters is not equal.");
-    parameters.map((p, index) => {
-        isExpectedType(p, expected_types[index]);
-    });
-}
 
-export const checkPriceFormat = (price) => {
-    assert.match(price.toString(), /^\d*\.\d{2}$/gm, "Price is not format with 2 after 2 decimals points.");
+//TODO: Rework this function to help with price formatting.
+export const checkTypeParameters = (parameters, expected_types) => {
 }
