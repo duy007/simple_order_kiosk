@@ -1,4 +1,4 @@
-import { checkPriceFormat, checkTypeParameters, requiredParameters, TYPES } from "../utils/requiredParameterHelper";
+import { checkTypeParameters, requiredParameters, TYPES } from "../utils/requiredParameterHelper";
 
 export class Product {
     #productID;

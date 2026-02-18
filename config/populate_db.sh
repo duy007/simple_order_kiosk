@@ -10,4 +10,4 @@ INSERT INTO CART(customer_id) VALUES (3);
 INSERT INTO orderItem(cart_id, product_id, sugar_level, ice_level, quantity) VALUES (1, 1, .25,\"normal\", 1), (1, 2, 1, \"no ice\", 2), (1, 3, .25, \"less ice\",1);
 INSERT INTO orderTopping(order_id, topping_id, extra) VALUES (1, 2, TRUE), (2, 1, FALSE), (3, 3, TRUE);
 
-INSERT INTO Sale(cart_id, payment_method, total_price, tax_percentage, tax, tip_percentage, total_tip, total_amount, sale_completed) VALUES (1, \"credit card\", 2150, .125, 269, .15, 323, 2742, TRUE);"
+INSERT INTO Sale(cart_id, payment_method, total_price, tax_percentage, tax, tip_percentage, total_tip, total_amount, sale_completed) VALUES (1, \"credit card\", 2150, .125, 269, .15, 323, 27.42, TRUE);"

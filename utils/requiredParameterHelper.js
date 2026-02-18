@@ -41,7 +41,12 @@ export const isExpectedType = (value, expected_type) => {
 
 }
 
-
-//TODO: Rework this function to help with price formatting.
 export const checkTypeParameters = (parameters, expected_types) => {
+    assert.deepStrictEqual(parameters.length, expected_types.length, "length of expected types and parameters is not equal.");
+    parameters.map((p, index) => {
+        isExpectedType(p, expected_types[index]);
+    });
+}
+
+export const checkPriceFormat = (price) => {
 }
