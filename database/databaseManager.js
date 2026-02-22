@@ -1,11 +1,9 @@
 #!/usr/bin/env node
-import { DatabaseSync } from 'node:sqlite';
+import { SQLiteDatabase } from "@andrewitsover/midnight";
+import * as schema from '../models/schema.js';
 
-const database = new DatabaseSync('./orderKiosk.db');
 
-const query = database.prepare('SELECT * FROM orderTopping;');
+const database = new SQLiteDatabase('./database/orderKiosk.db');
+const db = database.getClient(schema);
 
-const obj = query.all();
-
-console.log(obj);
-
+export default db;
